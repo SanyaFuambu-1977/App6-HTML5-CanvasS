@@ -7,7 +7,8 @@ THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.
  
 Authors in chronological order of contribution:
 Tim Riedel
-Author 2
+Sanya Fuambu
+	<!-- Added myself as an author -->
  
 Further Information:
 http://cns.utexas.edu/fri
@@ -127,8 +128,29 @@ var y = (canvas.height - rectHeight) / 2;
 			document.getElementById("btnImage".onclick = function () {
 				var img = new Image();
 				<!-- image from image file in files part of App6 -->
-				img.src = " " <!-- image file name-->
-				
+				img.src = "i-love-diy1.jpg" <!-- image file name-->
+				img.onload = function () {
+					var scale = 0.5;
+					var imgW = img.width * scale;
+					var imgH = img.height * scale;
+					var x = (canvas.width - imgW) / 2;
+					var y = (canvas.height - imgH) / 2;
+					ctx.drawImage(img, x, y, imgW, imgH);
+				};
+			};
+			
+			<!-- added to make the image be in the center of the canvas and to fix the sizing -->	
+
+				document.getElementById("btnClear").onclick = function () {
+					ctx.clearRect(0, 0, canvas.width, canvas.height);
+				};
+			<!-- clears everything from canvas with one click -->
+
+				window.addEventListener("resize", function () {
+					resizeCanvasToDisplaySize();
+				});
+			};
+			<!-- added help keep canvas oriented and help with size changes -->
 				</script>
 	</p>
 		
@@ -136,6 +158,17 @@ var y = (canvas.height - rectHeight) / 2;
  	
 	<p>THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.</p>
 
+	<canvas id="myCanvas"></canvas>canvas>
+	<!-- switching to HTML5 for drawing on the canvas-->
+
+	<div class="btn-row">
+		<button id="btnRect" class="w3-button w3-flat-carrot">Draw Rectangle</button>
+		<button id="btnName" class="w3-button w3-flat-carrot">Put My Name</button>
+     	<button id="btnImage" class="w3-button w3-flat-carrot">Load Image</button>
+		<button id="btnClear" class="w3-button w3-flat-carrot">Clear Canvas</button>
+		<!-- adding the buttons under the canvas for all the options-->
+	</div>
+</div>
 <footer class="w3-bottom w3-container w3-flat-carrot">
 	<p>DIY!</p>
 </footer>
