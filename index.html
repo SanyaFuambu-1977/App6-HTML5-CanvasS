@@ -8,7 +8,7 @@ THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.
 Authors in chronological order of contribution:
 Tim Riedel
 Sanya Fuambu
-	Added myself as an author
+	<!-- Added myself as an author -->
  
 Further Information:
 http://cns.utexas.edu/fri
@@ -19,10 +19,10 @@ triedel@utexas.edu
  
 Brief Description of Goal of Code:
 The goal of this code is to prepare for image analysis by creating a box then adding buttons that upon clicking add a rectangle, my name, an image, or clears the box.
- Removed "blah, blah, blah" and replaced it with what the goal of the code is. I got this information from the protocol in the shared drive.
+ <!--Removed "blah, blah, blah" and replaced it with what the goal of the code is. I got this information from the protocol in the shared drive. -->
 Known Issues:
 The code includes an image but has no image analysis. Additionally there are very limited options for what can be added to the box. There is also no back arrow, only a clear button that removes everything.
- Removed "blah, blah, blah" and replaced it with limitations I think this code has.
+ <!--Removed "blah, blah, blah" and replaced it with limitations I think this code has.-->
 
 https://www.w3schools.com/w3css/default.asp
 https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-file
@@ -43,25 +43,25 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
     #header {
       text-align: center;
     }
-    /* This adds a header and makes it in the center */
+    <!-- This adds a header and makes it in the center -->
 
     #content {
       padding-bottom: 80px;
     }  
-    /* Keeps the footer from covering any content and helps the canvas fit on a phone screen */
+    <!-- Keeps the footer from covering any content and helps the canvas fit on a phone screen -->
 
     #myCanvas {
-      border: 2px solid black; /* creates a border for the canvas */
-      width: 90vw;             /* canvas width on phone */
-      height: 50vh;            /* canvas height on phone */
+      border: 2px solid black;  <!--creates a border for the canvas -->
+      width: 90vw;             <!-- canvas width on phone -->
+      height: 50vh;            <!-- canvas height on phone -->
       display: block;
       margin: 10px auto;
       background-color: #ffffff;
     }.page {
-      width: 90vw;  /* changed the width from 100 to 90 */
-      height: 50vh; /* changed the height from 100 to 50 */
-      display: block;  /* added line so block is displayed */
-      margin: 10px auto; /* added line for margin later */
+      width: 90vw;  <!-- changed the width from 100 to 90 -->
+      height: 50vh; <!-- changed the height from 100 to 50 -->
+      display: block;  <!-- added line so block is displayed -->
+      margin: 10px auto; <!-- added line for margin later -->
       position: fixed;
       top: 0;
       left: -100vw;
@@ -74,7 +74,7 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
     }.btn-row button {
       margin: 5px;
     }
-    /* added code for the alignment and margin of the button */.page:target {
+    <!-- added code for the alignment and margin of the button -->.page:target {
       left: 0vw;
       z-index: 1;
     }
@@ -88,7 +88,7 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
     window.onload = function () {
       var canvas = document.getElementById("myCanvas");
       var ctx = canvas.getContext("2d");
-      // added this so everything loads and runs after page load
+      <!-- added this so everything loads and runs after page load -->
 
       function resizeCanvasToDisplaySize() {
         var rect = canvas.getBoundingClientRect();
@@ -96,13 +96,13 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
         canvas.height = rect.height;
       }
       resizeCanvasToDisplaySize();
-      // added this so the canvas resolution matches the CSS size
+      <!-- added this so the canvas resolution matches the CSS size -->
 
       document.getElementById("btnRect").onclick = function () {
         ctx.fillStyle = "orange";
         ctx.strokeStyle = "orange";
         ctx.lineWidth = 4;
-        // button draws an orange rectangle
+        <!-- button draws an orange rectangle -->
 
         var rectWidth = canvas.width / 2;
         var rectHeight = canvas.height / 3;
@@ -112,20 +112,20 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
         ctx.fillRect(x, y, rectWidth, rectHeight);
         ctx.strokeRect(x, y, rectWidth, rectHeight);
       };
-      // added a rectangle in the middle of the canvas after the button is clicked once
+      <!-- added a rectangle in the middle of the canvas after the button is clicked once -->
 
       document.getElementById("btnName").onclick = function () {
         ctx.fillStyle = "black";
         ctx.font = "24px Arial";
         ctx.textAlign = "center";
         ctx.fillText("Sanya Grace Fuambu", canvas.width / 2, 40); 
-        // added my name to the canvas after the button is clicked
+        <!-- added my name to the canvas after the button is clicked -->
       };
 
       document.getElementById("btnImage").onclick = function () {
         var img = new Image();
-        // image from image file in files part of App6
-        img.src = "i-love-diy1.jpg"; // image file name
+        <!-- image from image file in files part of App6 -->
+        img.src = "i-love-diy1.jpg"; <!-- image file name -->
         img.onload = function () {
           var scale = 0.5;
           var imgW = img.width * scale;
@@ -135,17 +135,17 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
           ctx.drawImage(img, x, y, imgW, imgH);
         };
       };
-      // centers the image on the canvas and scales it
+      <!-- centers the image on the canvas and scales it -->
 
       document.getElementById("btnClear").onclick = function () {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
       };
-      // clears everything from canvas with one click
+      <!-- clears everything from canvas with one click -->
 
       window.addEventListener("resize", function () {
         resizeCanvasToDisplaySize();
       });
-      // helps keep canvas oriented and helps with size changes
+      <!-- helps keep canvas oriented and helps with size changes -->
     };
   </script>
 </head> 
