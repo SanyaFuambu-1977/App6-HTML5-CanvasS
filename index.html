@@ -8,9 +8,9 @@ THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.
 Authors in chronological order of contribution:
 Tim Riedel
 Sanya Fuambu
-	<!-- Added myself as an author -->
+	Added myself as an author
  
-<!-- Further Information:
+Further Information:
 http://cns.utexas.edu/fri
  
 Research Educator:
@@ -18,160 +18,163 @@ Timothy Riedel
 triedel@utexas.edu
  
 Brief Description of Goal of Code:
-The goal of this code is to prepare for image analysis by creating a box then adding buttons that upon clicking add a rectangle, my name, an image, or a clears the box.
- <!-- Removed "blah, blah, blah" and replaced it with what the goal of the code is. I got this information from the protocol in the shared drive -->
+The goal of this code is to prepare for image analysis by creating a box then adding buttons that upon clicking add a rectangle, my name, an image, or clears the box.
+ Removed "blah, blah, blah" and replaced it with what the goal of the code is. I got this information from the protocol in the shared drive.
 Known Issues:
-The code includes an image but has no image analysis. Additionally they're very limited opitions for what can be added to the box. There is also no back arrow, only a clear button that removes everything.
-	 <!-- Removed "blah, blah, blah" and replaced it limitations I think this code has -->
+The code includes an image but has no image analysis. Additionally there are very limited options for what can be added to the box. There is also no back arrow, only a clear button that removes everything.
+ Removed "blah, blah, blah" and replaced it with limitations I think this code has.
 
 https://www.w3schools.com/w3css/default.asp
 https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-file
 -->
 	
-   <head> 
-      <title>App6---HTML5-Canvas</title>  
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="apple-mobile-web-app-capable" content="yes">
-      <link rel="stylesheet" href="w3.css">
-      <link rel="stylesheet" href="w3-colors-flat.css">
-   </head> 
+<head> 
+  <title>App6---HTML5-Canvas</title>  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="w3.css">
+  <link rel="stylesheet" href="w3-colors-flat.css">
 
+  <style>	
+    body {
+      margin: 0em;
+    }
 
-<script>
-var docMod = document.lastModified; // loads last modified time stamp into docMod variable
-alert("This file last modified " + docMod); // generates alert box with time stamp. If annoying, comment out this entire line.
-console.log("This file last modified " + docMod); // generates message in javaScript console (found in developers tools) with time stamp. 
-</script>
+    #header {
+      text-align: center;
+    }
+    /* This adds a header and makes it in the center */
 
+    #content {
+      padding-bottom: 80px;
+    }  
+    /* Keeps the footer from covering any content and helps the canvas fit on a phone screen */
 
+    #myCanvas {
+      border: 2px solid black; /* creates a border for the canvas */
+      width: 90vw;             /* canvas width on phone */
+      height: 50vh;            /* canvas height on phone */
+      display: block;
+      margin: 10px auto;
+      background-color: #ffffff;
+    }.page {
+      width: 90vw;  /* changed the width from 100 to 90 */
+      height: 50vh; /* changed the height from 100 to 50 */
+      display: block;  /* added line so block is displayed */
+      margin: 10px auto; /* added line for margin later */
+      position: fixed;
+      top: 0;
+      left: -100vw;
+      overflow-y: auto;
+      z-index: 0;
+      background-color: hsl(0,0%,100%);
+    }.btn-row {
+      text-align: center;
+      margin: 10px 0;
+    }.btn-row button {
+      margin: 5px;
+    }
+    /* added code for the alignment and margin of the button */.page:target {
+      left: 0vw;
+      z-index: 1;
+    }
+  </style>
 
-<style>	
-.body {
-     margin: 0em;
-#header {
-		text-align: center;
-}
-<!-- This adds a header and makes it in the center-->
-#content {
-	padding-bottom: 80px;
-}  
-	<!-- Keeps the footer from covering any content and helps the canvas fit on a phone screen-->
+  <script>
+    var docMod = document.lastModified; 
+    alert("This file last modified " + docMod);
+    console.log("This file last modified " + docMod);
 
-	#myCanvas {
-		border: 2px solid black; <!-- creates a border for the canvas-->
-	}
-.page {
-    width: 90vw; <!-- changed the width from 100 to 90-->
-    height: 50vh; <!-- changed the height from 100 to 50-->
-	display: block; <!-- added line so block is displayed-->
-	margin: 10px auto; <!-- added line for margin alter-->
-    position: fixed;
-    top: 0;
-    left: -100vw;
-    overflow-y: auto;
-    z-index: 0;
-    background-color: hsl(0,0%,100%);
-}
-	.btn-row{
-		text-align: center;
-		margin: 10px 0;
-	}.btn-row button {
-		margin: 5px;
-	}
-	<!-- added code for the alignment and margin of the button-->
-  .page:target {
-    left: 0vw;
-    z-index: 1;
-}
-</style>
+    window.onload = function () {
+      var canvas = document.getElementById("myCanvas");
+      var ctx = canvas.getContext("2d");
+      // added this so everything loads and runs after page load
+
+      function resizeCanvasToDisplaySize() {
+        var rect = canvas.getBoundingClientRect();
+        canvas.width  = rect.width;
+        canvas.height = rect.height;
+      }
+      resizeCanvasToDisplaySize();
+      // added this so the canvas resolution matches the CSS size
+
+      document.getElementById("btnRect").onclick = function () {
+        ctx.fillStyle = "orange";
+        ctx.strokeStyle = "orange";
+        ctx.lineWidth = 4;
+        // button draws an orange rectangle
+
+        var rectWidth = canvas.width / 2;
+        var rectHeight = canvas.height / 3;
+        var x = (canvas.width - rectWidth) / 2;
+        var y = (canvas.height - rectHeight) / 2;
+
+        ctx.fillRect(x, y, rectWidth, rectHeight);
+        ctx.strokeRect(x, y, rectWidth, rectHeight);
+      };
+      // added a rectangle in the middle of the canvas after the button is clicked once
+
+      document.getElementById("btnName").onclick = function () {
+        ctx.fillStyle = "black";
+        ctx.font = "24px Arial";
+        ctx.textAlign = "center";
+        ctx.fillText("Sanya Grace Fuambu", canvas.width / 2, 40); 
+        // added my name to the canvas after the button is clicked
+      };
+
+      document.getElementById("btnImage").onclick = function () {
+        var img = new Image();
+        // image from image file in files part of App6
+        img.src = "i-love-diy1.jpg"; // image file name
+        img.onload = function () {
+          var scale = 0.5;
+          var imgW = img.width * scale;
+          var imgH = img.height * scale;
+          var x = (canvas.width - imgW) / 2;
+          var y = (canvas.height - imgH) / 2;
+          ctx.drawImage(img, x, y, imgW, imgH);
+        };
+      };
+      // centers the image on the canvas and scales it
+
+      document.getElementById("btnClear").onclick = function () {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      };
+      // clears everything from canvas with one click
+
+      window.addEventListener("resize", function () {
+        resizeCanvasToDisplaySize();
+      });
+      // helps keep canvas oriented and helps with size changes
+    };
+  </script>
+</head> 
 
 <body>
-<div id="header" class="w3-container w3-flat-carrot">
-	<h1>App6---HTML5-Canvas</h1>
-</div>
+  <div id="header" class="w3-container w3-flat-carrot">
+    <h1>App6---HTML5-Canvas</h1>
+  </div>
 	
-<div id="content" class="w3-container">
-	<p>
-		<script>
-			window.onload = function () {
-				var canvas = document.getElementById("myCanvas");
-				var ctx = canvas.getContext("2d");
-				<!-- added this so the everything loads and runs after each page-->
-	function resizeCanvasToDisplaySize() {
-		var rect = canvas.getBoundingClientRect();
-		canvas.width = rect.width;
-		canvas.height = rect.height;
-	}
-			resizeCanvasToDisplaySize();
-			
-	<!-- added this so the canvas resolution matched the CSS size that way the resolution is sharp-->
-		document.getElementById("btnRect").onclick = function () {
-			ctx.fillStyle = "lightorange";
-			ctx.strokeStyle = "organge";
-			ctx.lineWidth = 4;
-			<!-- added line for button so after one link it changes the canvas and this first button will be orange -->
-var rectWidth = canvas.width /2;
-var rectHeight = canvas.height /3;
-var x = (canvas.width - rectWidth) / 2;
-var y = (canvas.height - rectHeight) / 2;
-		ctx.fillRect(x, y, rectWidth, rectHeight);
-		ctx.strokeRect(x, y, rectWidth, rectHeight);
-			};
-			<!-- added a rectangle in the middle of the canvas after the button is clicked once-->
-	document.getElementById("btnName").onclick = function () {
-		ctx.fillStyle = "black";
-		ctx.font = "24px Arial";
-		ctx.textAlign = "center";
-		ctx.fillText("Sanya Grace Fuambu",canvas.width / 2,40); <!-- added my name to the canvas after the button is clicked -->
-				};
-
-			document.getElementById("btnImage".onclick = function () {
-				var img = new Image();
-				<!-- image from image file in files part of App6 -->
-				img.src = "i-love-diy1.jpg" <!-- image file name-->
-				img.onload = function () {
-					var scale = 0.5;
-					var imgW = img.width * scale;
-					var imgH = img.height * scale;
-					var x = (canvas.width - imgW) / 2;
-					var y = (canvas.height - imgH) / 2;
-					ctx.drawImage(img, x, y, imgW, imgH);
-				};
-			};
-			
-			<!-- added to make the image be in the center of the canvas and to fix the sizing -->	
-
-				document.getElementById("btnClear").onclick = function () {
-					ctx.clearRect(0, 0, canvas.width, canvas.height);
-				};
-			<!-- clears everything from canvas with one click -->
-
-				window.addEventListener("resize", function () {
-					resizeCanvasToDisplaySize();
-				});
-			};
-			<!-- added help keep canvas oriented and help with size changes -->
-				</script>
-	</p>
-		
-	<p>The following code has been developed by students and/or researchers of the Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at 		Austin.  This code is shared for demonstration purposes and should not be considered a product -- it is for entertainment purposes only. Any user of this code 			does so at their own risk. Members of the DIY Stream, FRI, and The University of Texas system are not liable for anything related to this code.</p>
+  <div id="content" class="w3-container">
+    <p>The following code has been developed by students and/or researchers of the Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at Austin.  This code is shared for demonstration purposes and should not be considered a product -- it is for entertainment purposes only. Any user of this code does so at their own risk. Members of the DIY Stream, FRI, and The University of Texas system are not liable for anything related to this code.</p>
  	
-	<p>THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.</p>
+    <p>THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.</p>
 
-	<canvas id="myCanvas"></canvas>canvas>
-	<!-- switching to HTML5 for drawing on the canvas-->
+    <!-- HTML5 drawing canvas -->
+    <canvas id="myCanvas"></canvas>
+    <!-- switching to HTML5 for drawing on the canvas-->
 
-	<div class="btn-row">
-		<button id="btnRect" class="w3-button w3-flat-carrot">Draw Rectangle</button>
-		<button id="btnName" class="w3-button w3-flat-carrot">Put My Name</button>
-     	<button id="btnImage" class="w3-button w3-flat-carrot">Load Image</button>
-		<button id="btnClear" class="w3-button w3-flat-carrot">Clear Canvas</button>
-		<!-- adding the buttons under the canvas for all the options-->
-	</div>
-</div>
-<footer class="w3-bottom w3-container w3-flat-carrot">
-	<p>DIY!</p>
-</footer>
+    <div class="btn-row">
+      <button id="btnRect"  class="w3-button w3-flat-carrot">Draw Rectangle</button>
+      <button id="btnName"  class="w3-button w3-flat-carrot">Put My Name</button>
+      <button id="btnImage" class="w3-button w3-flat-carrot">Load Image</button>
+      <button id="btnClear" class="w3-button w3-flat-carrot">Clear Canvas</button>
+      <!-- adding the buttons under the canvas for all the options-->
+    </div>
+  </div>
 
+  <footer class="w3-bottom w3-container w3-flat-carrot">
+    <p>DIY!</p>
+  </footer>
 </body>
 </html>
