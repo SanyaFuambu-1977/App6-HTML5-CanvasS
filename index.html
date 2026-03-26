@@ -47,10 +47,23 @@ console.log("This file last modified " + docMod); // generates message in javaSc
 <style>	
 .body {
      margin: 0em;
+#header {
+		text-align: center;
 }
+<!-- This adds a header and makes it in the center-->
+#content {
+	padding-bottom: 80px;
+}  
+	<!-- Keeps the footer from covering any content and helps the canvas fit on a phone screen-->
+
+	#myCanvas {
+		border: 2px solid black; <!-- creates a border for the canvas-->
+	}
 .page {
-    width: 100vw;
-    height: 100vh;
+    width: 90vw; <!-- changed the width from 100 to 90-->
+    height: 50vh; <!-- changed the height from 100 to 50-->
+	display: block; <!-- added line so block is displayed-->
+	margin: 10px auto; <!-- added line for margin alter-->
     position: fixed;
     top: 0;
     left: -100vw;
@@ -58,6 +71,13 @@ console.log("This file last modified " + docMod); // generates message in javaSc
     z-index: 0;
     background-color: hsl(0,0%,100%);
 }
+	.btn-row{
+		text-align: center;
+		margin: 10px 0;
+	}.btn-row button {
+		margin: 5px;
+	}
+	<!-- added code for the alignment and margin of the button-->
   .page:target {
     left: 0vw;
     z-index: 1;
@@ -70,7 +90,23 @@ console.log("This file last modified " + docMod); // generates message in javaSc
 </div>
 	
 <div id="content" class="w3-container">
-	<p>Content goes here.</p>
+	<p>
+		<script>
+			window.onload = function () {
+				var canvas = document.getElementById("myCanvas");
+				var ctx = canvas.getContext("2d");
+				<!-- added this so the everything loads and runs after each page-->
+	function resizeCanvasToDisplaySize() {
+		var rect = canvas.getBoundingClientRect();
+		canvas.width = rect.width;
+		canvas.height = rect.height;
+	}
+			resizeCanvasToDisplaySize();
+			
+	<!-- added this so the canvas resolution matched the CSS size that way the resolution is sharp-->
+		
+		</script>
+	</p>
 		
 	<p>The following code has been developed by students and/or researchers of the Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at 		Austin.  This code is shared for demonstration purposes and should not be considered a product -- it is for entertainment purposes only. Any user of this code 			does so at their own risk. Members of the DIY Stream, FRI, and The University of Texas system are not liable for anything related to this code.</p>
  	
