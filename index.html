@@ -104,8 +104,32 @@ console.log("This file last modified " + docMod); // generates message in javaSc
 			resizeCanvasToDisplaySize();
 			
 	<!-- added this so the canvas resolution matched the CSS size that way the resolution is sharp-->
-		
-		</script>
+		document.getElementById("btnRect").onclick = function () {
+			ctx.fillStyle = "lightorange";
+			ctx.strokeStyle = "organge";
+			ctx.lineWidth = 4;
+			<!-- added line for button so after one link it changes the canvas and this first button will be orange -->
+var rectWidth = canvas.width /2;
+var rectHeight = canvas.height /3;
+var x = (canvas.width - rectWidth) / 2;
+var y = (canvas.height - rectHeight) / 2;
+		ctx.fillRect(x, y, rectWidth, rectHeight);
+		ctx.strokeRect(x, y, rectWidth, rectHeight);
+			};
+			<!-- added a rectangle in the middle of the canvas after the button is clicked once-->
+	document.getElementById("btnName").onclick = function () {
+		ctx.fillStyle = "black";
+		ctx.font = "24px Arial";
+		ctx.textAlign = "center";
+		ctx.fillText("Sanya Grace Fuambu",canvas.width / 2,40); <!-- added my name to the canvas after the button is clicked -->
+				};
+
+			document.getElementById("btnImage".onclick = function () {
+				var img = new Image();
+				<!-- image from image file in files part of App6 -->
+				img.src = " " <!-- image file name-->
+				
+				</script>
 	</p>
 		
 	<p>The following code has been developed by students and/or researchers of the Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at 		Austin.  This code is shared for demonstration purposes and should not be considered a product -- it is for entertainment purposes only. Any user of this code 			does so at their own risk. Members of the DIY Stream, FRI, and The University of Texas system are not liable for anything related to this code.</p>
